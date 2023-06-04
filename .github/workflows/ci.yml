@@ -20,6 +20,8 @@ jobs:
       - name: Execute Shell Script
         run: |
           echo ${{ secrets.AWS_ACCOUNT_DEV }} >> $GITHUB_ENV
+          chmod +x deploy.sh
+          ./deploy.sh ${{ secrets.AWS_ACCOUNT_DEV }}
           # Use the environment variables in your script
 
   deploy-prod:
@@ -40,30 +42,32 @@ jobs:
         run: |
           if [[ "${{ steps.approval.outputs.approved }}" == "true" ]]; then
             echo ${{ secrets.AWS_ACCOUNT_PROD }} >> $GITHUB_ENV
+            chmod +x deploy.sh ${{ secrets.AWS_ACCOUNT_PROD }}
+            ./deploy.sh 
             # Use the environment variables in your script
           else
             echo "Deployment to prod was not approved."
           fi
 
-  build-and-deploy:
-    needs: [deploy-dev, deploy-prod]
-    runs-on: [main]
-    steps:
-      # Add build and deployment steps here
+#   build-and-deploy:
+#     needs: [deploy-dev, deploy-prod]
+#     runs-on: [main]
+#     steps:
+#       # Add build and deployment steps here
 
-      # Example:
-      - name: Build
-        run: |
-            echo ${{ secrets.AWS_ACCOUNT_DEV }} >> $GITHUB_ENV
-            echo ${{ secrets.AWS_ACCOUNT_PROD }} >> $GITHUB_ENV
-          # Use the environment variables in your build commands
+#       # Example:
+#       - name: Build
+#         run: |
+#             echo ${{ secrets.AWS_ACCOUNT_DEV }} >> $GITHUB_ENV
+#             echo ${{ secrets.AWS_ACCOUNT_PROD }} >> $GITHUB_ENV
+#           # Use the environment variables in your build commands
 
-      - name: Deploy to Dev
-        run: |
-            echo ${{ secrets.AWS_ACCOUNT_DEV }} >> $GITHUB_ENV
-          # Use the environment variables in your deployment commands
+#       - name: Deploy to Dev
+#         run: |
+#             echo ${{ secrets.AWS_ACCOUNT_DEV }} >> $GITHUB_ENV
+#           # Use the environment variables in your deployment commands
 
-      - name: Deploy to Prod
-        run: |
-            echo ${{ secrets.AWS_ACCOUNT_PROD }} >> $GITHUB_ENV
-          # Use the environment variables in your deployment commands
+#       - name: Deploy to Prod
+#         run: |
+#             echo ${{ secrets.AWS_ACCOUNT_PROD }} >> $GITHUB_ENV
+#           # Use the environment variables in your deployment commands
