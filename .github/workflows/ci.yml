@@ -3,7 +3,7 @@ name: deploy-pipeline
 on:
   push:
     branches:
-      - "master"
+      - "main"
 
 env:
   CI: false
@@ -34,7 +34,7 @@ jobs:
         uses: azure/approvals@v1
         with:
           message: "Approve prod deployment"
-          users: john@example.com
+          users: dnilesh@intraedge.com
 
       - name: Execute Shell Script
         run: |
