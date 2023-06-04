@@ -1,0 +1,69 @@
+name: deploy-pipeline
+
+on:
+  push:
+    branches:
+      - "master"
+
+env:
+  CI: false
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true 
+  # Add more environment variables as needed
+
+jobs:
+  deploy-dev:
+    runs-on: [master]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Execute Shell Script
+        run: |
+          echo ${{ secrets.AWS_ACCOUNT_DEV }} >> $GITHUB_ENV
+          # Use the environment variables in your script
+
+  deploy-prod:
+    runs-on: [self-hosted, master]
+    needs: deploy-dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Manual Approval
+        id: approval
+        uses: azure/approvals@v1
+        with:
+          message: "Approve prod deployment"
+          users: john@example.com
+
+      - name: Execute Shell Script
+        run: |
+          if [[ "${{ steps.approval.outputs.approved }}" == "true" ]]; then
+            echo ${{ secrets.AWS_ACCOUNT_PROD }} >> $GITHUB_ENV
+            # Use the environment variables in your script
+          else
+            echo "Deployment to prod was not approved."
+          fi
+
+  build-and-deploy:
+    needs: [deploy-dev, deploy-prod]
+    runs-on: [master]
+    steps:
+      # Add build and deployment steps here
+
+      # Example:
+      - name: Build
+        run: |
+            echo ${{ secrets.AWS_ACCOUNT_DEV }} >> $GITHUB_ENV
+            echo ${{ secrets.AWS_ACCOUNT_PROD }} >> $GITHUB_ENV
+          # Use the environment variables in your build commands
+
+      - name: Deploy to Dev
+        run: |
+            echo ${{ secrets.AWS_ACCOUNT_DEV }} >> $GITHUB_ENV
+          # Use the environment variables in your deployment commands
+
+      - name: Deploy to Prod
+        run: |
+            echo ${{ secrets.AWS_ACCOUNT_PROD }} >> $GITHUB_ENV
+          # Use the environment variables in your deployment commands
