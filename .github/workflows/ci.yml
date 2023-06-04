@@ -12,7 +12,7 @@ env:
 
 jobs:
   deploy-dev:
-    runs-on: [master]
+    runs-on: [main]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
           # Use the environment variables in your script
 
   deploy-prod:
-    runs-on: [self-hosted, master]
+    runs-on: [main]
     needs: deploy-dev
     steps:
       - name: Checkout
@@ -47,7 +47,7 @@ jobs:
 
   build-and-deploy:
     needs: [deploy-dev, deploy-prod]
-    runs-on: [master]
+    runs-on: [main]
     steps:
       # Add build and deployment steps here
 
