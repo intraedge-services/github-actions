@@ -13,11 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up environment variable
+      - name: Execute Shell Script
         run: |
-          echo "MY_ENVIRONMENT=${{ env.MY_ENVIRONMENT }}" >> $GITHUB_ENV
-
-      - name: Run deployment script
-        run: |
-          echo "Deploying using environment: $MY_ENVIRONMENT"
-          # Add your deployment commands here
+          chmod +x deploy.sh
+          ./deploy.sh dev
+          # Use the environment variables in your script
