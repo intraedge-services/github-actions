@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ "AWS_ACCOUNT_DEV" = "$AWS_ACCOUNT_PROD" ]; then
+if [ "$environment" = "dev" ]; then
     echo "Deploying to dev environment..."
     echo "AWS_ACCOUNT_DEV=$AWS_ACCOUNT_DEV"
     # Add commands for deploying to the dev environment
-elif [ "AWS_ACCOUNT_PROD" = "$AWS_ACCOUNT_PROD" ]; then
+elif [ "$environment" = "prod" ]; then
     echo "Deploying to prod environment..."
     echo "AWS_ACCOUNT_PROD=$AWS_ACCOUNT_PROD"
     # Add commands for deploying to the prod environment
