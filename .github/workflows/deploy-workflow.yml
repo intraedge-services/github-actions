@@ -16,4 +16,4 @@ jobs:
       - name: Run deployment script
         run: |
           chmod +x deploy.sh
-          ./deploy.sh dev
+          ./deploy.sh ${{ secrets.ENVIRONMENT }}
