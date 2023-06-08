@@ -15,7 +15,7 @@ jobs:
 
       - name: Set up environment variable
         run: |
-          echo "MY_ENVIRONMENT=${{ env.ENVIRONMENT }}" >> $GITHUB_ENV
+          echo "MY_ENVIRONMENT=${{ env.MY_ENVIRONMENT }}" >> $GITHUB_ENV
 
       - name: Run deployment script
         run: |
