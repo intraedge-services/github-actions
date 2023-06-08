@@ -1,4 +1,4 @@
-name: Deployment Workflow for deploy.sh
+name: Deployment Workflow
 
 on:
   push:
@@ -9,14 +9,15 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    env:
-      environment: ${{ secrets.environment }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up environment variable
+        run: |
+          echo "MY_ENVIRONMENT=${{ env.ENVIRONMENT }}" >> $GITHUB_ENV
+
       - name: Run deployment script
         run: |
-          chmod +x deploy.sh
-          ./deploy.sh $environment
+          echo "Deploying using environment: $MY_ENVIRONMENT"
+          # Add your deployment commands here

@@ -1,18 +1,12 @@
 #!/bin/bash
 
-environment="$1"
-
-if [ "$environment" = "dev" ]; then
-    echo "Setting environment variable to dev..."
-    export environment="dev"
-elif [ "$environment" = "prod" ]; then
-    echo "Setting environment variable to prod..."
-    export environment="prod"
+if [ "$MY_ENVIRONMENT" = "development" ]; then
+    echo "Deploying to development environment..."
+    # Add commands for deploying to the development environment
+elif [ "$MY_ENVIRONMENT" = "production" ]; then
+    echo "Deploying to production environment..."
+    # Add commands for deploying to the production environment
 else
-    echo "Invalid environment specified. Please use 'dev' or 'prod'."
+    echo "Invalid environment specified: $MY_ENVIRONMENT. Please use 'development' or 'production'."
     exit 1
 fi
-
-# Rest of the deployment steps using the MY_ENVIRONMENT variable
-echo "Deploying using environment: $environment"
-# Add your deployment commands here
