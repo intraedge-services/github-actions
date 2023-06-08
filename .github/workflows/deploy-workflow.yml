@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+      ENVIRONMENT: ${{ secrets.environment }}
 
     steps:
       - name: Checkout code
