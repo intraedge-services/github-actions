@@ -1,4 +1,4 @@
-name: Deployment Workflow
+name: Deployment Workflow for deploy.sh
 
 on:
   push:
