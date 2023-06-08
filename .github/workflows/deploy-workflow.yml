@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ENVIRONMENT: ${{ secrets.environment }}
+      environment: ${{ secrets.environment }}
 
     steps:
       - name: Checkout code
@@ -19,4 +19,4 @@ jobs:
       - name: Run deployment script
         run: |
           chmod +x deploy.sh
-          ./deploy.sh $ENVIRONMENT
+          ./deploy.sh $environment
