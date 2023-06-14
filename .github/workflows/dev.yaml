@@ -17,8 +17,8 @@ jobs:
         id: build
         run: |
           echo "Building and testing the application"
-          echo "::set-output name=TEST_ENV::$TEST_ENV"
-          echo "::set-output name=TEST_ENV_1::$TEST_ENV_1"
+          echo "::set-output name=TEST_ENV::dev"
+          echo "::set-output name=TEST_ENV_1::dev1"
 
       - name: Get specific variable value
         run: |
