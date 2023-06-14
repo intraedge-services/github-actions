@@ -1,7 +1,7 @@
 name: CI/CD - Development Environment
 
 env: 
-  test: ${{vars.MY_ENVIRONMENT}}
+  env_var: ${{ vars.MY_ENVIRONMENT }}
 on:
   push:
     branches:
@@ -19,7 +19,10 @@ jobs:
       - name: Build and test
         run: |
           echo "Building and testing the application"
-          echo "$test"
+          echo "$env_var"
+
+      - name: Checkout code
+        run: env
 
       - name: Deploy to dev environment
         run: |
