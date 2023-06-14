@@ -13,13 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and test
-        id: build
-        run: |
-          echo "Building and testing the application"
-          echo "::set-output name=TEST_ENV::dev"
-          echo "::set-output name=TEST_ENV_1::dev1"
-
       - name: Get specific variable value
         run: |
           echo "TEST_ENV: ${{ steps.build.outputs.TEST_ENV }}"
