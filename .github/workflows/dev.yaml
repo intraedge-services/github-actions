@@ -19,7 +19,7 @@ jobs:
       - name: Build and test
         run: |
           echo "Building and testing the application"
-          echo "${{ vars.TEST_ENV }}"
+          echo "${{ toJSON(vars) }}"
 
       - name: Checkout code
         run: env
