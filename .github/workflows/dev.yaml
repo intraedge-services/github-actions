@@ -30,3 +30,15 @@ jobs:
         run: |
           echo "Building and testing the application"
           echo "${{ toJSON(vars) }}"
+
+      - name: Set the value
+        id: step_one
+        run: |
+          echo "action_state=yellow" >> "$GITHUB_ENV"
+      - name: Use the value
+        id: step_two
+        run: |
+    
+          echo "${{ env.action_state }}" # This will output 'yellow'
+          
+          
