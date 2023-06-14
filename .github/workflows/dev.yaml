@@ -13,16 +13,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Build and test
+        id: build
+        run: |
+          echo "Building and testing the application"
+          echo "::set-output name=TEST_ENV::$TEST_ENV"
+          echo "::set-output name=TEST_ENV_1::$TEST_ENV_1"
+
+      - name: Get specific variable value
+        run: |
+          echo "Variable 1: ${{ steps.build.outputs.TEST_ENV }}"
+          echo "Variable 2: ${{ steps.build.outputs.TEST_ENV_1 }}"
+
       # Additional steps for building and testing
       - name: Build and test
         run: |
           echo "Building and testing the application"
           echo "${{ toJSON(vars) }}"
-
-      - name: Checkout code
-        run: env
-
-      - name: Deploy to dev environment
-        run: |
-          echo "Deploying to dev environment"
-          echo "Environment: dev}"
