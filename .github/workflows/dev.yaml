@@ -1,7 +1,5 @@
 name: CI/CD - Development Environment
 
-env: 
-  env_var: ${{ vars.MY_ENVIRONMENT }}
 on:
   push:
     branches:
