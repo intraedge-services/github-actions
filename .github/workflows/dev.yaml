@@ -22,8 +22,8 @@ jobs:
 
       - name: Get specific variable value
         run: |
-          echo "Variable 1: ${{ steps.build.outputs.TEST_ENV }}"
-          echo "Variable 2: ${{ steps.build.outputs.TEST_ENV_1 }}"
+          echo "TEST_ENV: ${{ steps.build.outputs.TEST_ENV }}"
+          echo "TEST_ENV_1: ${{ steps.build.outputs.TEST_ENV_1 }}"
 
       # Additional steps for building and testing
       - name: Build and test
