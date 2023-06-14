@@ -19,7 +19,7 @@ jobs:
       - name: Build and test
         run: |
           echo "Building and testing the application"
-          echo "$env_var"
+          echo "${{ vars }}"
 
       - name: Checkout code
         run: env
