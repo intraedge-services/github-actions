@@ -1,4 +1,4 @@
-name: CI/CD - Development Environment
+name: Repository Variables
 
 on:
   push:
@@ -13,22 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Get specific variable value
-        run: |
-          echo "TEST_ENV: ${{ steps.build.outputs.TEST_ENV }}"
-          echo "TEST_ENV_1: ${{ steps.build.outputs.TEST_ENV_1 }}"
-
-      # Additional steps for building and testing
-      - name: Build and test
+      - name: Repository Variables
         run: |
           echo "Building and testing the application"
           echo "${{ toJSON(vars) }}"
 
-      - name: Set the value
-        id: step_one
+      - name: Specific Variable
         run: |
-          echo "action_state=yellow" >> "$GITHUB_ENV"
-      - name: Use the value
-        id: step_two
-        run: |
-          echo "${{ toJSON(vars.TEST_ENV) }}" # This will output 'yellow'
+          echo "${{ toJSON(vars.TEST_ENV) }}"
