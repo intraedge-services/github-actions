@@ -31,4 +31,4 @@ jobs:
       - name: Use the value
         id: step_two
         run: |
-          echo "${{ env.TEST_ENV }}" # This will output 'yellow'
+          echo "${{ toJSON(vars.TEST_ENV) }}" # This will output 'yellow'
